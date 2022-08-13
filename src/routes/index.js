@@ -11,7 +11,7 @@ import Sreach from '~/pages/Sreach';
 //* Public routes
 const publicRouters = [
     { path: '/', component: Home },
-    { path: '/profile', component: Profile },
+    { path: '/@:nickname', component: Profile },
     { path: '/following', component: Following },
     { path: '/upload', component: Upload, layout: HeaderOnly },
     { path: '/sreach', component: Sreach, layout: null }

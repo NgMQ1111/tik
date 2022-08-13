@@ -1,34 +1,27 @@
-import { useEffect, useState } from "react";
-
 import Tippy from "@tippyjs/react";
-import HeadlessTippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCircleXmark,
-  faCloud,
-  faCloudUpload,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
   faGears,
-  faMessage,
-  faSignIn,
-  faSpinner,
   faKeyboard,
   faQuestionCircle,
   faUser,
   faSignOut,
+  faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "~/components/Button";
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
-import { Wrapper as PopperWrapper } from "~/components/Popper";
-import AccountItem from "~/components/AccountItem";
 import Menu from "~/components/Popper/Menu";
+import { InboxIcon, MessagesIcon } from "~/components/Icons";
+import Image from "~/components/Images";
+import Search from "../Search";
 
 //! thư viện classnames giải quyết vấn đề đặt tên của class trong Component
 const cx = classNames.bind(styles);
@@ -87,16 +80,9 @@ const userMenu = [
     to: "/logout",
     separate: true,
   },
-]
+];
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 0);
-  }, []);
 
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
@@ -116,49 +102,25 @@ function Header() {
           <img src={images.logo} alt="Tiktok" />
         </div>
 
-        <HeadlessTippy
-          interactive
-          visible={searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx("search-title")}>Accounts</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx("sreach")}>
-            <input
-              placeholder="Sreach accounts and videos"
-              spellCheck={false}
-            />
-            <button className={cx("clear")}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
-
-            <button className={cx("sreach-btn")}>
-              <img src={images.searchBtn} alt="SearchBtn" />
-            </button>
-          </div>
-        </HeadlessTippy>
+        <Search />
 
         <div className={cx("action")}>
           {currentUser ? (
             <>
               <Tippy delay={(0, 200)} content="Upload" placement="bottom">
                 <button className={cx("actions-btn")}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <FontAwesomeIcon icon={faArrowUpFromBracket} />
                 </button>
               </Tippy>
               <Tippy delay={(0, 200)} content="Messages" placement="bottom">
-              <button className={cx("actions-btn")}>
-                <FontAwesomeIcon icon={faMessage} />
-              </button>
+                <button className={cx("actions-btn")}>
+                  <MessagesIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={(0, 200)} content="Inbox" placement="bottom">
+                <button className={cx("actions-btn")}>
+                  <InboxIcon />
+                </button>
               </Tippy>
             </>
           ) : (
@@ -168,9 +130,12 @@ function Header() {
             </>
           )}
 
-          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+          <Menu
+            items={currentUser ? userMenu : MENU_ITEMS}
+            onChange={handleMenuChange}
+          >
             {currentUser ? (
-              <img
+              <Image
                 src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/bfb524e05e98febbd9de5706b6313336~c5_100x100.jpeg?x-expires=1660471200&x-signature=hIrSjFiUvETKnLuAJ9Irhe938Mc%3D"
                 className={cx("user-avatar")}
                 alt="Nguyen Van A"

@@ -5,11 +5,18 @@ import styles from "./Search.module.scss";
 
 import HeadlessTippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleNodes, faCircleNotch, faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleNodes,
+  faCircleNotch,
+  faCircleXmark,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import { SearchIcon } from "~/components/Icons";
+import { useDebounce } from "~/hooks";
+import * as searchServices from "~/apiServices/searchServices";
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +25,8 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const debounced = useDebounce(searchValue, 500);
 
   const inputRef = useRef();
 
@@ -33,27 +42,22 @@ function Search() {
   };
 
   useEffect(() => {
-    if (!searchValue.trim()) {
-      setSearchResult([])
+    if (!debounced.trim()) {
+      setSearchResult([]);
       return;
     }
 
-    setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true)
 
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchValue
-      )}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [searchValue]);
+      const result = await searchServices.search(debounced)
+
+      setSearchResult(result)
+      setLoading(false)
+    };
+
+    fetchApi()
+  }, [debounced]);
 
   return (
     <HeadlessTippy

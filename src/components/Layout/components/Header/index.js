@@ -2,6 +2,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
 import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCoins,
@@ -22,6 +23,7 @@ import Menu from "~/components/Popper/Menu";
 import { InboxIcon, MessagesIcon } from "~/components/Icons";
 import Image from "~/components/Images";
 import Search from "../Search";
+import routesConfig from "~/config/routes";
 
 //! thư viện classnames giải quyết vấn đề đặt tên của class trong Component
 const cx = classNames.bind(styles);
@@ -98,9 +100,9 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <div className={cx("logo")}>
+        <Link to={routesConfig.home} className={cx("logo")}>
           <img src={images.logo} alt="Tiktok" />
-        </div>
+        </Link>
 
         <Search />
 

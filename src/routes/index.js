@@ -1,3 +1,5 @@
+import routesConfig from '~/config/routes';
+
 //* Layouts
 import { HeaderOnly } from '~/components/Layout';
 
@@ -10,11 +12,11 @@ import Sreach from '~/pages/Sreach';
 
 //* Public routes
 const publicRouters = [
-    { path: '/', component: Home },
-    { path: '/@:nickname', component: Profile },
-    { path: '/following', component: Following },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
-    { path: '/sreach', component: Sreach, layout: null }
+    { path: routesConfig.home, component: Home },
+    { path: routesConfig.profile, component: Profile },
+    { path: routesConfig.following, component: Following },
+    { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
+    { path: routesConfig.search, component: Sreach, layout: null }
 ]
 
 const privateRouters = [

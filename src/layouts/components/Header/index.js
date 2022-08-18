@@ -205,6 +205,7 @@ function Header() {
     }
   };
 
+  //todo: LogIn --> LogOut
   const currentUser = true;
 
   return (
@@ -219,17 +220,17 @@ function Header() {
         <div className={cx("action")}>
           {currentUser ? (
             <>
-              <Tippy delay={(0, 200)} content="Upload" placement="bottom">
+              <Tippy delay={(0, 50)} content="Upload" placement="bottom">
                 <button className={cx("actions-btn")}>
                   <FontAwesomeIcon icon={faArrowUpFromBracket} />
                 </button>
               </Tippy>
-              <Tippy delay={(0, 200)} content="Messages" placement="bottom">
+              <Tippy delay={(0, 50)} content="Messages" placement="bottom">
                 <button className={cx("actions-btn")}>
                   <MessagesIcon />
                 </button>
               </Tippy>
-              <Tippy delay={(0, 200)} content="Inbox" placement="bottom">
+              <Tippy delay={(0, 50)} content="Inbox" placement="bottom">
                 <button className={cx("actions-btn")}>
                   <InboxIcon />
                 </button>

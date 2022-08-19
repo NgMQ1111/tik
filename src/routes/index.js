@@ -9,12 +9,14 @@ import Following from '~/pages/Following';
 import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Sreach from '~/pages/Sreach';
+import Live from '~/pages/Live';
 
 //* Public routes
 const publicRouters = [
     { path: config.routes.home, component: Home },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.following, component: Following },
+    { path: config.routes.live, component: Live },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
     { path: config.routes.search, component: Sreach, layout: null }
 ]

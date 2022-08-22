@@ -12,6 +12,11 @@
     display: flex;
 }
 
+.sidebar-wrapper {
+    position: relative;
+    width: 356px;
+}
+
 .content{
     flex: 1;
 }

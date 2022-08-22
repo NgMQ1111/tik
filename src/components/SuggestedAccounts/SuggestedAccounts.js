@@ -18,7 +18,6 @@ function SuggetsedAccounts({ label }) {
             <AccountItem />
             <AccountItem />
             <AccountItem />
-            <AccountItem />
 
             <p className={cx('more-btn')}>See all</p>
         </div>

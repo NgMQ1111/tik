@@ -6,6 +6,7 @@ import { HomeIcon, HomeActiveIcon, UserGroupIcon, UserGroupActiveIcon, LiveIcon,
 import Menu, { MenuItem } from "./Menu";
 import SuggetsedAccounts from "src/components/SuggestedAccounts";
 import HotSearchs from "src/components/HotSearchs";
+import OtherProducts from "src/components/OtherProducts";
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +29,10 @@ function Sidebar() {
         <SuggetsedAccounts label="Following accounts"/>
 
         <HotSearchs label="Discover"/>
+
+        <OtherProducts />
+
+        <p className={cx('developer-name')}>© 2022 TikTok</p>
       </div>
 
       <div className={cx('scroll-bar')}>

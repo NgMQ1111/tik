@@ -12,7 +12,7 @@ import {
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
-import { SearchIcon } from "~/components/Icons";
+import { SearchIcon } from "~/components/Icons"; 
 import { useDebounce } from "~/hooks";
 import * as searchServices from "~/services/searchServices";
 

@@ -10,6 +10,7 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Sreach from '~/pages/Sreach';
 import Live from '~/pages/Live';
+import About from '~/pages/About';
 
 //* Public routes
 const publicRouters = [
@@ -18,7 +19,8 @@ const publicRouters = [
     { path: config.routes.following, component: Following },
     { path: config.routes.live, component: Live },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
-    { path: config.routes.search, component: Sreach, layout: null }
+    { path: config.routes.search, component: Sreach, layout: null },
+    { path: config.routes.about, component: About },
 ]
 
 const privateRouters = [

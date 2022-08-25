@@ -1,54 +1,62 @@
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faL } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./AccountPreview.module.scss";
 import Button from "~/components/Button";
 import { useState } from "react";
+import Image from "src/components/Images";
 
 const cx = classNames.bind(styles);
 
-function AccountPreview() {
-  const [follow, setfollow] = useState(false)
+function AccountPreview({ data }) {
+  const [follow, setfollow] = useState(false);
 
   const handleFollow = () => {
-    if(follow) {
-      setfollow(false)
+    if (follow) {
+      setfollow(false);
     } else {
-      setfollow(true)
+      setfollow(true);
     }
-  }
+  };
 
   return (
     <div className={cx("wrapper")}>
       <div className={cx("header")}>
-        <img
-          className={cx("avatar")}
-          src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/aaa08a620faa5868d71d37cfada8872e~c5_100x100.jpeg?x-expires=1661137200&x-signature=pjCCcEdj80alPzh918OOusxXYlY%3D"
-          alt=""
-        />
+        <Image className={cx("avatar")} src={data.avatar} alt={data.last_name} />
         {follow ? (
-          <Button onClick={handleFollow} className={cx('follow-btn')} outline>Following</Button>
+          <Button onClick={handleFollow} className={cx("follow-btn")} outline>
+            Following
+          </Button>
         ) : (
-          <Button onClick={handleFollow} className={cx('follow-btn')} primary>Follow</Button>
+          <Button onClick={handleFollow} className={cx("follow-btn")} primary>
+            Follow
+          </Button>
         )}
       </div>
       <div className={cx("body")}>
-          <p className={cx("nickname")}>
-            <strong>chang0000</strong>
+        <p className={cx("nickname")}>
+          <strong>{data.nickname}</strong>
+          {data.tick && (
             <FontAwesomeIcon className={cx("check")} icon={faCheckCircle} />
-          </p>
-          <p className={cx("name")}>🔆IG: hi.changnee🔆</p>
-          <p className={cx('analytics')}>
-            <strong className={cx('value')}>8.2M </strong>
-            <span className={cx('label')}>Followers</span>
-            <strong className={cx('value')}>8.2M </strong>
-            <span className={cx('label')}>Likes</span>
-          </p>
+          )}
+        </p>
+        <p className={cx("name")}>{`${data.first_name} ${data.last_name}`}</p>
+        <p className={cx("analytics")}>
+          <strong className={cx("value")}>{data.followers_count} </strong>
+          <span className={cx("label")}>Followers</span>
+          <strong className={cx("value")}>{data.likes_count} </strong>
+          <span className={cx("label")}>Likes</span>
+        </p>
       </div>
     </div>
   );
 }
+
+AccountPreview.propTypes = {
+  // data: PropTypes.object
+};
 
 export default AccountPreview;

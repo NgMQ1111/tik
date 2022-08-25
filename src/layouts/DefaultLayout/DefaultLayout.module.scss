@@ -10,6 +10,7 @@
     padding: 0 var(--default-layout-horizontal-space);
     margin-top: var(--default-layout-header-height);
     display: flex;
+    justify-content: space-between;
 }
 
 .sidebar-wrapper {
@@ -18,5 +19,5 @@
 }
 
 .content{
-    flex: 1;
+   
 }

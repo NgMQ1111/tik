@@ -19,7 +19,7 @@ import {
 import Button from "~/components/Button";
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
-import Menu from "~/components/Popper/Menu";
+import Menu from "src/components/Popper/Menu";
 import { InboxIcon, MessagesIcon } from "~/components/Icons";
 import Image from "~/components/Images";
 import Search from "../Search";

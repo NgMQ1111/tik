@@ -24,7 +24,7 @@ function AccountItem({ data }) {
   };
 
   return (
-    <Link to={`/@chang0000`}>
+    <Link to={`/@${data.nickname}`}>
       <Tippy
         offset={[-20, 0]}
         interactive

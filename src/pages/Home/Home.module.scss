@@ -1,4 +1,5 @@
 .wrapper {
+  overflow-y: scroll;
   margin-right: 16px;
   margin-left: 16px;
   width: 692px;
@@ -55,7 +56,7 @@
   right: 0;
 }
 
-.hashtag-content {
+.description {
   display: flex;
 }
 
@@ -86,7 +87,7 @@
   height: 456px;
   margin-right: 20px;
 
-  img {
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -130,7 +131,6 @@
   }
 }
 
-
 .nickname,
 .hashtag,
 .music-content {
@@ -138,4 +138,15 @@
         cursor: pointer;
         text-decoration: underline;
     }
+}
+
+//todo: Content Introduction
+.content-introduction {
+  display: block;
+  width: 280px;
+  font-size: 1.4rem;
+  line-height: 20px;
+  padding: 16px 0;
+  margin: 0 16px;
+  border-top: 1px solid rgba(22, 24, 35, 0.12);
 }

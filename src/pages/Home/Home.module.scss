@@ -1,5 +1,4 @@
 .wrapper {
-  overflow-y: scroll;
   margin-right: 16px;
   margin-left: 16px;
   width: 692px;
@@ -149,4 +148,30 @@
   padding: 16px 0;
   margin: 0 16px;
   border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+//todo: Go to top
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding:10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  cursor: pointer;
+  animation: Animate infinite 0.5s alternate-reverse;
+}
+
+.scroll-top-icon {
+  font-size: 1.8rem;
+  color: var(--white);
+}
+
+@keyframes Animate {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 50px
+  }
 }

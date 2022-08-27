@@ -14,22 +14,23 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import styles from "../Home.module.scss";
 import { Link } from "react-router-dom";
 import HomeItemPreview from "../HomeItemPreview";
+import Image from "src/components/Images";
 
 const cx = classNames.bind(styles);
 
-function HomeItem({ data }) {
+function HomeItem({ data, className }) {
 
-  const user = data.user
+  const user = data.user;
 
   const renderPreview = (props) => {
     return (
-      <div tabIndex='-1' {...props}>
+      <div tabIndex="-1" {...props}>
         <PopperWrapper>
-          <HomeItemPreview data={user}/>
+          <HomeItemPreview data={user} />
         </PopperWrapper>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={cx("item-container")}>
@@ -41,7 +42,7 @@ function HomeItem({ data }) {
           delay={[800, 0]}
           render={renderPreview}
         >
-          <img
+          <Image
             className={cx("avatar")}
             src={user.avatar}
             alt={user.last_name}
@@ -53,7 +54,9 @@ function HomeItem({ data }) {
         <div className={cx("text-info")}>
           <div className={cx("author")}>
             <h3 className={cx("nickname")}>{user.nickname}</h3>
-            <span className={cx("name")}>{`${user.first_name} ${user.last_name}`}</span>
+            <span
+              className={cx("name")}
+            >{`${user.first_name} ${user.last_name}`}</span>
 
             <Button outline small className={cx("btn-follow")}>
               Follow
@@ -72,12 +75,12 @@ function HomeItem({ data }) {
 
           <div className={cx("music-content")}>
             <MusicNodeIcon />
-            <span>{`nhạc nền - ${user.nickname}.`}</span>
+            <span>{`nhạc nền - ${user.first_name} ${user.last_name}.`}</span>
           </div>
         </div>
         <div className={cx("video-wrapper")}>
           <div className={cx("video")}>
-            <video controls>
+            <video controls className={className}>
               <source src={data.file_url} />
             </video>
           </div>

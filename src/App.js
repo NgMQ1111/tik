@@ -4,6 +4,7 @@ import DefaultLayout from "~/layouts";
 import { Fragment } from "react";
 
 function App() {
+  
   return (
     <Router>
       <div className="App">

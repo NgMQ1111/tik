@@ -61,8 +61,7 @@ function AccountPreview({ data, isFollow }) {
 }
 
 AccountPreview.propTypes = {
-  data: PropTypes.object,
-  isFollow: PropTypes.bool
+  data: PropTypes.object
 };
 
 export default AccountPreview;

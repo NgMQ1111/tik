@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import classNames from "classnames/bind";
-import styles from "./SuggestedAccounts.module.scss";
+import styles from "./FollowingAccounts.module.scss";
 
 import AccountItem from "./AccountItem";
 import * as userServices from "~/services/userServices";
@@ -10,8 +10,8 @@ import * as userServices from "~/services/userServices";
 const cx = classNames.bind(styles);
 
 const INIT_PAGE = 1;
-const PER_PAGE = 5;
-function SuggetsedAccounts({ label }) {
+
+function FollowingAccounts({ label }) {
 
   const [page, setPage] = useState(INIT_PAGE);
   const [isSeeAll, setIsSeeAll] = useState(true);
@@ -19,9 +19,9 @@ function SuggetsedAccounts({ label }) {
 
   useEffect(() => {
     userServices
-      .getSuggested({ page, perPage: PER_PAGE })
+      .getFollowingAcc({ page })
       .then((data) => {
-        setSuggestedUsers((pverUsers) => [...pverUsers, ...data]);
+        //! Xem lai
       })
       .catch((error) => console.log(error));
   }, [page]);
@@ -45,8 +45,8 @@ function SuggetsedAccounts({ label }) {
   );
 }
 
-SuggetsedAccounts.propTypes = {
+FollowingAccounts.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export default SuggetsedAccounts;
+export default FollowingAccounts;

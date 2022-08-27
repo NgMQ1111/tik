@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,14 +21,34 @@ import Image from "src/components/Images";
 const cx = classNames.bind(styles);
 
 function HomeItem({ data, className }) {
-
   const user = data.user;
+
+  const [isFollow, setIsFollow] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+
+  const handleSetFollow = () => {
+    if (!isFollow) {
+      setIsFollow(true);
+    } else {
+      setIsFollow(false);
+    }
+  };
+
+  const handleSetLike = () => {
+    if (!isLike) {
+      setIsLike(true);
+      data.likes_count += 1
+    } else {
+      setIsLike(false);
+      data.likes_count -= 1
+    }
+  }
 
   const renderPreview = (props) => {
     return (
       <div tabIndex="-1" {...props}>
         <PopperWrapper>
-          <HomeItemPreview data={user} />
+          <HomeItemPreview data={user} isFollow={isFollow} />
         </PopperWrapper>
       </div>
     );
@@ -58,9 +80,23 @@ function HomeItem({ data, className }) {
               className={cx("name")}
             >{`${user.first_name} ${user.last_name}`}</span>
 
-            <Button outline small className={cx("btn-follow")}>
-              Follow
-            </Button>
+            {isFollow ? (
+              <Button
+                onClick={handleSetFollow}
+                className={cx("btn-follow")}
+                outline
+              >
+                Following
+              </Button>
+            ) : (
+              <Button
+                onClick={handleSetFollow}
+                className={cx("btn-follow")}
+                primary
+              >
+                Follow
+              </Button>
+            )}
           </div>
 
           <div className={cx("description")}>
@@ -85,9 +121,13 @@ function HomeItem({ data, className }) {
             </video>
           </div>
           <div className={cx("video-item")}>
-            <button className={cx("action-btn-item")}>
+            <button onClick={handleSetLike} className={cx("action-btn-item")}>
               <div className={cx("icon-wrapper")}>
-                <FontAwesomeIcon className={cx("icon")} icon={faHeart} />
+                {isLike ? (
+                  <FontAwesomeIcon className={cx("icon-actived")} icon={faHeart} />
+                ) : (
+                  <FontAwesomeIcon className={cx("icon")} icon={faHeart} />
+                )}
               </div>
               <strong>{data.likes_count}</strong>
             </button>

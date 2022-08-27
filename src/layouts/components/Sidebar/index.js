@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 
 import config from "src/config";
@@ -14,32 +13,13 @@ import {
 } from "src/components/Icons";
 import Menu, { MenuItem } from "./Menu";
 import SuggetsedAccounts from "src/components/SuggestedAccounts";
+import FollowingAccounts from "src/components/FollowingAccounts";
 import HotSearchs from "src/components/HotSearchs";
 import OtherProducts from "src/components/OtherProducts";
-import * as userServices from "~/services/userServices";
 
 const cx = classNames.bind(styles);
 
-const INIT_PAGE = 1;
-const PER_PAGE = 5;
-
 function Sidebar() {
-  const [page, setPage] = useState(INIT_PAGE);
-  const [isSeeAll, setIsSeeAll] = useState(true);
-  const [suggestedUsers, setSuggestedUsers] = useState([]);
-
-  useEffect(() => {
-    userServices
-      .getSuggested({ page, perPage: PER_PAGE })
-      .then((data) => {
-        setSuggestedUsers((pverUsers) => [...pverUsers, ...data]);
-      })
-      .catch((error) => console.log(error));
-  }, [page]);
-
-  const handleSeeAll = () => {
-    setPage(page + 1);
-  };
 
   return (
     <aside className={cx("wrapper")}>
@@ -67,15 +47,9 @@ function Sidebar() {
 
         <SuggetsedAccounts
           label="Suggested accounts"
-          data={suggestedUsers}
-          isSeeAll={isSeeAll}
-          onSeeAll={handleSeeAll}
         />
-        <SuggetsedAccounts
+        <FollowingAccounts
           label="Following accounts"
-          data={suggestedUsers}
-          isSeeAll={isSeeAll}
-          onSeeAll={handleSeeAll}
         />
 
         <HotSearchs label="Discover" />

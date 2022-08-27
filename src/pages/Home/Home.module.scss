@@ -123,20 +123,26 @@
     background-color: rgba(22, 24, 35, 0.1);
   }
 
-  .icon {
+  .icon,
+  .icon-actived {
     transform: translateY(50%);
     width: 2.4rem;
     height: 2.4rem;
+  }
+  
+  .icon-actived {
+    animation: AnimateLike infinite 0.3s alternate-reverse;
+    color: var(--primary);
   }
 }
 
 .nickname,
 .hashtag,
 .music-content {
-    &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 //todo: Content Introduction
@@ -155,11 +161,11 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  padding:10px;
+  padding: 10px;
   border-radius: 50%;
   background-color: var(--primary);
   cursor: pointer;
-  animation: Animate infinite 0.5s alternate-reverse;
+  animation: AnimateScroll infinite 0.5s alternate-reverse;
 }
 
 .scroll-top-icon {
@@ -167,11 +173,21 @@
   color: var(--white);
 }
 
-@keyframes Animate {
+@keyframes AnimateScroll {
   from {
     bottom: 30px;
   }
   to {
-    bottom: 50px
+    bottom: 50px;
+  }
+}
+
+@keyframes AnimateLike {
+  from {
+  }
+  to {
+    width: 2.8rem;
+    height: 2.8rem;
+    transform: translateY( 35%);
   }
 }

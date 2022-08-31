@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import styles from "./FollowingAccounts.module.scss";
 
 import AccountItem from "./AccountItem";
-import * as userServices from "~/services/userServices";
+import * as userFollowingServices from "src/services/userFollowingServices";
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +18,7 @@ function FollowingAccounts({ label }) {
   const [suggestedUsers, setSuggestedUsers] = useState([]);
 
   useEffect(() => {
-    userServices
+    userFollowingServices
       .getFollowingAcc({ page })
       .then((data) => {
         //! Xem lai

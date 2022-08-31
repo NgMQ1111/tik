@@ -1,3 +1,4 @@
+import { useState } from "react";
 import classNames from "classnames/bind";
 
 import config from "src/config";
@@ -16,10 +17,22 @@ import SuggetsedAccounts from "src/components/SuggestedAccounts";
 import FollowingAccounts from "src/components/FollowingAccounts";
 import HotSearchs from "src/components/HotSearchs";
 import OtherProducts from "src/components/OtherProducts";
+import Button from "src/components/Button";
+import Modal from "src/components/Modal";
+import LoginModal from "src/components/LoginModal";
 
 const cx = classNames.bind(styles);
 
-function Sidebar() {
+function Sidebar({ isLogin }) {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const openModal = () => {
+    setModalIsOpen(true)
+  }
+  
+  const closeModal = () => {
+    setModalIsOpen(false)
+  }
 
   return (
     <aside className={cx("wrapper")}>
@@ -45,12 +58,17 @@ function Sidebar() {
           />
         </Menu>
 
-        <SuggetsedAccounts
-          label="Suggested accounts"
-        />
-        <FollowingAccounts
-          label="Following accounts"
-        />
+        {!isLogin ? (
+          <div className={cx('login-wrapper')}>
+            <p className={cx('login-content')}>
+            Log in to follow creators, like videos, and view comments.
+            </p>
+            <Button className={cx('login-btn')} outline large onClick={openModal}>Log in</Button>
+          </div>
+        ) : null}
+
+        <SuggetsedAccounts label="Suggested accounts" />
+        {isLogin ? <FollowingAccounts label="Following accounts" /> : null}
 
         <HotSearchs label="Discover" />
 
@@ -62,6 +80,10 @@ function Sidebar() {
       <div className={cx("scroll-bar")}>
         <div className={cx("scroll-bar-thumb")}></div>
       </div>
+
+      <Modal isOpen={modalIsOpen}>
+        <LoginModal closeModal={closeModal}/>
+      </Modal>
     </aside>
   );
 }

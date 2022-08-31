@@ -24,6 +24,10 @@ import { InboxIcon, MessagesIcon } from "~/components/Icons";
 import Image from "~/components/Images";
 import Search from "../Search";
 import config from "~/config";
+import { layer } from "@fortawesome/fontawesome-svg-core";
+import Modal from "src/components/Modal";
+import { useState } from "react";
+import LoginModal from "src/components/LoginModal";
 
 //! thư viện classnames giải quyết vấn đề đặt tên của class trong Component
 const cx = classNames.bind(styles);
@@ -194,7 +198,8 @@ const userMenu = [
   },
 ];
 
-function Header() {
+function Header({ isLogin }) {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
@@ -205,8 +210,17 @@ function Header() {
     }
   };
 
+  
+const openModal = () => {
+  setModalIsOpen(true)
+}
+
+const closeModal = () => {
+  setModalIsOpen(false)
+}
+
   //todo: LogIn --> LogOut
-  const currentUser = true;
+  const currentUser = isLogin;
 
   return (
     <header className={cx("wrapper")}>
@@ -239,7 +253,7 @@ function Header() {
           ) : (
             <>
               <Button text>Upload</Button>
-              <Button primary>Log in</Button>
+              <Button primary onClick={openModal}>Log in</Button>
             </>
           )}
 
@@ -261,6 +275,12 @@ function Header() {
           </Menu>
         </div>
       </div>
+
+
+      <Modal isOpen={modalIsOpen}>
+        <LoginModal closeModal={closeModal}/>
+      </Modal>
+
     </header>
   );
 }

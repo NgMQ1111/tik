@@ -1,0 +1,45 @@
+.wrapper {
+    z-index: 9999;
+    position: fixed;
+    inset: 0px;
+    display: flex;
+    overflow: auto;
+    outline: 0px;
+    transition: all 1000ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    opacity: 1;
+}
+
+.overplay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0px;
+}
+
+.body {
+    border-radius: 8px;
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    position: relative;
+    max-height: 693px;
+    height: 80%;
+    overflow: hidden;
+}
+
+@keyframes modalShow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalHidden {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

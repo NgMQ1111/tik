@@ -1,16 +1,16 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
 
 import Button from "../Button";
 import { UserGroupIcon } from "../Icons";
 import styles from "./LoginModal.module.scss";
 
 const cx = classNames.bind(styles);
+const LOGIN = false
 
 function LoginMethods({ closeModal, isLogin }) {
 
     const handleLogin = () => {
-        //! Xem lai
+        return true
     }
 
   return (
@@ -75,4 +75,5 @@ function LoginMethods({ closeModal, isLogin }) {
   );
 }
 
+export { LOGIN }
 export default LoginMethods;

@@ -28,8 +28,8 @@ function HomeWrapper() {
   window.onscroll = () => {
     if (window.scrollY / refHome.current.clientHeight > 0.8) {
       setTimeout(() => {
-        setPage(page + 1)
-      }, 1500)
+        setPage(page + 1);
+      }, 1500);
     }
 
     if (document.documentElement.scrollTop > 800) {
@@ -41,7 +41,7 @@ function HomeWrapper() {
 
   return (
     <div ref={refHome}>
-      <Home data={home} onScrollTop={isScrollTop} page={page}/>
+      <Home data={home} onScrollTop={isScrollTop} page={page} />
     </div>
   );
 }

@@ -12,7 +12,6 @@ const cx = classNames.bind(styles);
 const INIT_PAGE = 1;
 const PER_PAGE = 5;
 function SuggetsedAccounts({ label }) {
-
   const [page, setPage] = useState(INIT_PAGE);
   const [isSeeAll, setIsSeeAll] = useState(true);
   const [suggestedUsers, setSuggestedUsers] = useState([]);
@@ -34,9 +33,11 @@ function SuggetsedAccounts({ label }) {
     <div className={cx("wrapper")}>
       <p className={cx("label")}>{label}</p>
 
-      {suggestedUsers.map((account) => (
-        <AccountItem key={account.id} data={account} />
-      ))}
+      {suggestedUsers !== undefined
+        ? suggestedUsers.map((account) => (
+            <AccountItem key={account.id} data={account} />
+          ))
+        : null}
 
       <p className={cx("more-btn")} onClick={handleSeeAll}>
         {isSeeAll ? "See all" : "See less"}
